@@ -1,0 +1,12 @@
+if game.PlaceId == 7540891731 then --Red Light, Green Light (Lobby)
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Red-Light-Green-Light-Lobby', true))()
+end
+if game.PlaceId == 7577073048 then --Red Light, Green Light
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Red-Light-Green-Light', true))()
+end
+if game.PlaceId == 7546582874 then --Fish Game
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Fish-Game', true))()
+end
+if game.PlaceId ~= 7540891731 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7546582874 then
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Unknown-Game', true))()
+end
