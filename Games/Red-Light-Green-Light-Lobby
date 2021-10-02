@@ -1,0 +1,12 @@
+local Player = game:GetService('Players').LocalPlayer
+local RunService = game:GetService('RunService')
+RunService.RenderStepped:Connect(function()
+	local TeleportPad = game:GetService('Workspace').Mechanics.Box
+	local Humanoid = Player.Character.Humanoid
+	local Magnitude1 = (TeleportPad.Position - Player.Character.HumanoidRootPart.Position).magnitude
+	if Magnitude1 < 175 then
+		if Magnitude1 > 15 then
+			Humanoid:MoveTo(TeleportPad.Position)
+		end
+	end
+end)
