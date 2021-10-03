@@ -10,6 +10,9 @@ end
 if game.PlaceId == 5811396641 then --Corridor of Easy
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Corridor-of-Easy', true))()
 end
-if game.PlaceId ~= 7540891731 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 5811396641 then
+if game.PlaceId == 6284583030 then --Pet Simulator X
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Pet-Simulator-X', true))()
+end
+if game.PlaceId ~= 7540891731 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 5811396641 and game.PlaceId ~= 6284583030 then
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Unknown-Game', true))()
 end
