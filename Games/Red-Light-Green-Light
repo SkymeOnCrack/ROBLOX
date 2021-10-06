@@ -111,22 +111,28 @@ AutoWin.TextColor3 = Color3.fromRGB(255, 255, 255)
 AutoWin.TextSize = 16
 
 local AutoWinToggle = true
+local GreenRedLightToggle = false
 local HoneyCombResultToggle = false
 local PullToggle = false
+local MarbleToggle = false
+local GlassToggle = false
 AutoWin.MouseButton1Click:connect(function()
 	if AutoWinToggle == false then
 		AutoWinToggle = true
 		if Round.Value == 'GreenRedLight' then
-			Player.Character:MoveTo(game:GetService('Workspace').Mechanics.Doll.Head.Position)
+			GreenRedLightToggle = true
 		end
 		if Round.Value == 'Cookie' then
-			game:GetService('ReplicatedStorage').Remotes.HoneyCombResult:FireServer(true)
-			game:GetService('Workspace').Camera.CameraType = 'Custom'
-			game:GetService('Workspace').Camera.CFrame = Player.Character.Head.CFrame
-			Player.PlayerGui.CookieMessage.GameState.TextTransparency = 1
+			HoneyCombResultToggle = true
 		end
 		if Round.Value == 'TugOfWar' then
 			PullToggle = true
+		end
+		if Round.Value == 'Marble' then
+			MarbleToggle = true
+		end
+		if Round.Value == 'Glass' then
+			GlassToggle = true
 		end
 		AutoWin.Text = 'Auto Win:✅'
 	else
@@ -146,18 +152,35 @@ end)
 game:GetService('Workspace').Mechanics.TugOfWarInstructions.Played:Connect(function()
 	Round.Value = 'TugOfWar'
 end)
+game:GetService('Workspace').Mechanics.MarbleInstructions.Played:Connect(function()
+	Round.Value = 'Marble'
+end)
+game:GetService('Workspace').Mechanics.GlassInstructions.Played:Connect(function()
+	Round.Value = 'Glass'
+end)
 
 Round.Changed:Connect(function()
-	if AutoWinToggle == true then
-		if Round.Value == 'GreenRedLight' then
-			Player.Character:MoveTo(game:GetService('Workspace').Mechanics.Doll.Head.Position)
-		end
-		if Round.Value == 'Cookie' then
-			HoneyCombResultToggle = true
-		end
-		if Round.Value == 'TugOfWar' then
-			PullToggle = true
-		end
+	if Round.Value == 'Lobby' then
+		GreenRedLightToggle = false
+		HoneyCombResultToggle = false
+		PullToggle = false
+		MarbleToggle = false
+		GlassToggle = false
+	end
+	if Round.Value == 'GreenRedLight' then
+		GreenRedLightToggle = true
+	end
+	if Round.Value == 'Cookie' then
+		HoneyCombResultToggle = true
+	end
+	if Round.Value == 'TugOfWar' then
+		PullToggle = true
+	end
+	if Round.Value == 'Marble' then
+		MarbleToggle = true
+	end
+	if Round.Value == 'Glass' then
+		GlassToggle = true
 	end
 end)
 
@@ -175,8 +198,11 @@ Close.TextSize = 28
 
 Close.MouseButton1Click:connect(function()
 	AutoWinToggle = false
+	GreenRedLightToggle = false
 	HoneyCombResultToggle = false
 	PullToggle = false
+	MarbleToggle = false
+	GlassToggle = false
 	CoreGui.RedLightGreenLight.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
 	wait(0.5)
 	CoreGui.RedLightGreenLight:Destroy()
@@ -422,16 +448,37 @@ end)
 CoreGui.RedLightGreenLight.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 
 while true do
-	if HoneyCombResultToggle == true and Player.PlayerGui.InfoUi.TextLabel.Text == "00:56" then
-		game:GetService('ReplicatedStorage').Remotes.HoneyCombResult:FireServer(true)
-		game:GetService('Workspace').Camera.CameraType = 'Custom'
-		game:GetService('Workspace').Camera.CFrame = Player.Character.Head.CFrame
-		Player.PlayerGui.CookieMessage.GameState.TextTransparency = 1
-		wait(1)
-		HoneyCombResultToggle = false
+	local Music = game:GetService('ReplicatedStorage').Assets.Sounds.Music
+	if Music.EqualizerSoundEffect.HighGain == 0 and Music.EqualizerSoundEffect.LowGain == 0 and Music.EqualizerSoundEffect.MidGain == 0 then
+		Round.Value = 'Lobby'
 	end
-	if PullToggle == true and AutoWinToggle == true then
-		game:GetService('ReplicatedStorage').Pull:FireServer(1)
+	if AutoWinToggle == true then
+		if GreenRedLightToggle == true then
+			Player.Character.HumanoidRootPart.CFrame = CFrame.new(-309.5, 3, 422)
+			wait(1)
+			GreenRedLightToggle = false
+		end
+		if HoneyCombResultToggle == true and game:GetService('Workspace').Camera.CameraType == Enum.CameraType.Scriptable then
+			game:GetService('ReplicatedStorage').Remotes.HoneyCombResult:FireServer(true)
+			game:GetService('Workspace').Camera.CameraType = 'Custom'
+			game:GetService('Workspace').Camera.CFrame = Player.Character.Head.CFrame
+			Player.PlayerGui.CookieMessage.GameState.TextTransparency = 1
+			wait(1)
+			HoneyCombResultToggle = false
+		end
+		if PullToggle == true then
+			game:GetService('ReplicatedStorage').Pull:FireServer(1)
+		end
+		if MarbleToggle == true and Player.PlayerGui.MarbleUi.Frame.Visible == true then
+			Player.Character.HumanoidRootPart.Anchored = false
+			game:GetService('ReplicatedStorage').Remotes.MarbleRemote:FireServer(20, "Wager")
+			Player.PlayerGui.MarbleUi.Frame.Visible = false
+		end
+		if GlassToggle == true then
+			Player.Character.HumanoidRootPart.CFrame = CFrame.new(-500.8, 80, -480.85)
+			wait(1)
+			GlassToggle = false
+		end
 	end
 	wait()
 end
