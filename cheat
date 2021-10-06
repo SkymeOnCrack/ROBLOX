@@ -13,6 +13,12 @@ end
 if game.PlaceId == 6284583030 then --Pet Simulator X
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Pet-Simulator-X', true))()
 end
-if game.PlaceId ~= 7540891731 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 5811396641 and game.PlaceId ~= 6284583030 then
+if game.PlaceId == 370731277 then --Meep City
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Meep-City', true))()
+end
+if game.PlaceId == 18874143 or game.PlaceId == 942870654 or game.PlaceId == 967838527 or game.PlaceId == 969363672 then --Meep City Kart Racing
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Meep-City-Kart-Racing', true))()
+end
+if game.PlaceId ~= 7540891731 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 5811396641 and game.PlaceId ~= 6284583030 and game.PlaceId ~= 370731277 and game.PlaceId ~= 18874143 and game.PlaceId ~= 942870654 and game.PlaceId ~= 967838527 and game.PlaceId ~= 969363672  then
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Unknown-Game', true))()
 end
