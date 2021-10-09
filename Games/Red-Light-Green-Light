@@ -469,10 +469,16 @@ while true do
 		if PullToggle == true then
 			game:GetService('ReplicatedStorage').Pull:FireServer(1)
 		end
-		if MarbleToggle == true and Player.PlayerGui.MarbleUi.Frame.Visible == true then
-			Player.Character.HumanoidRootPart.Anchored = false
-			game:GetService('ReplicatedStorage').Remotes.MarbleRemote:FireServer(20, "Wager")
-			Player.PlayerGui.MarbleUi.Frame.Visible = false
+		if MarbleToggle == true and game:GetService('Workspace').Camera.CameraSubject ~= Player.Character.Humanoid then
+			local Player = game:GetService('Players').LocalPlayer
+			local P = game:GetService('Workspace').Camera.CameraSubject
+			P.EndPoint.WorldPosition = P.Parent.LoseMarbles:FindFirstChild('Marble').Position
+			local Shoot = P.EndPoint.Position.Unit * math.clamp(P.EndPoint.Position.Magnitude, 25, 300) * Vector3.new(1, 0, 1)
+			P.Beam.Enabled = false
+			game:GetService('ReplicatedStorage').Remotes.MarbleRemote:FireServer()
+			game:GetService('Workspace').Camera.CameraSubject = Player.Character.Humanoid
+			P:ApplyImpulse(Shoot)
+			Player.PlayerGui.MarbleUi.TextButton.Visible = false
 		end
 		if GlassToggle == true then
 			Player.Character.HumanoidRootPart.CFrame = CFrame.new(-500.8, 80, -480.85)
