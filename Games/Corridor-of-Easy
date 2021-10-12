@@ -9,6 +9,9 @@ local CoreGui = game:GetService('CoreGui')
 if CoreGui:FindFirstChild('CorridorofEasy') ~= nil then
 	CoreGui:FindFirstChild('CorridorofEasy'):Destroy()
 end
+if CoreGui:FindFirstChild('CorridorofEasyCrates') ~= nil then
+	CoreGui:FindFirstChild('CorridorofEasyCrates'):Destroy()
+end
 local CorridorofEasy = Instance.new('ScreenGui', game:GetService('CoreGui'))
 CorridorofEasy.Name = 'CorridorofEasy'
 CorridorofEasy.ResetOnSpawn = false
