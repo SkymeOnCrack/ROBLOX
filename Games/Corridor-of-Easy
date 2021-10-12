@@ -91,6 +91,8 @@ Background.BorderSizePixel = 0
 Background.Position = UDim2.new(0, 0, 0, 45)
 Background.Size = UDim2.new(0, 250, 0, 35)
 
+game:GetService('ReplicatedStorage').sendRickRollbadge:FireServer()
+
 local AutoWin = Instance.new('TextButton', Background)
 AutoWin.Name = 'AutoWin'
 AutoWin.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -116,6 +118,30 @@ AutoWin.MouseButton1Click:connect(function()
 	end
 end)
 
+local CratesGUI = Instance.new('TextButton', Notification)
+CratesGUI.Name = 'CratesGUI'
+CratesGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CratesGUI.BackgroundTransparency = 1
+CratesGUI.BorderColor3 = Color3.fromRGB(255, 255, 255)
+CratesGUI.BorderSizePixel = 0
+CratesGUI.Position = UDim2.new(0, 0, 0, 70)
+CratesGUI.Size = UDim2.new(0, 35, 0, 35)
+CratesGUI.Font = Enum.Font.Highway
+CratesGUI.Text = '📦'
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+CratesGUI.TextSize = 28
+
+CratesGUI.MouseButton1Click:connect(function()
+	CoreGui.CorridorofEasy.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
+	wait(0.5)
+	if CoreGui:FindFirstChild('CorridorofEasyCrates') ~= nil then
+		CoreGui.CorridorofEasyCrates.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
+	end
+	if CoreGui:FindFirstChild('CorridorofEasyCrates') == nil then
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Corridor-of-Easy-Crates', true))()
+	end
+end)
+
 local Close = Instance.new('TextButton', Header)
 Close.Name = 'Close'
 Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -133,6 +159,9 @@ Close.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasy.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
 	wait(0.5)
 	CoreGui.CorridorofEasy:Destroy()
+	if CoreGui:FindFirstChild('CorridorofEasyCrates') ~= nil then
+		CoreGui.CorridorofEasyCrates:Destroy()
+	end
 end)
 
 local Blue = Instance.new('TextButton', Notification)
