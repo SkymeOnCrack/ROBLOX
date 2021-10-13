@@ -104,11 +104,11 @@ AutoCoins.BorderSizePixel = 0
 AutoCoins.Position = UDim2.new(0, 0, 0, 0)
 AutoCoins.Size = UDim2.new(0, 125, 0, 35)
 AutoCoins.Font = Enum.Font.Highway
-AutoCoins.Text = 'Auto Coins:✅'
+AutoCoins.Text = 'Auto Coins:❎'
 AutoCoins.TextColor3 = Color3.fromRGB(255, 255, 255)
 AutoCoins.TextSize = 16
 
-local AutoCoinsToggle = true
+local AutoCoinsToggle = false
 AutoCoins.MouseButton1Click:connect(function()
 	if AutoCoinsToggle == false then
 		AutoCoinsToggle = true
@@ -132,11 +132,11 @@ AutoFish.BorderSizePixel = 0
 AutoFish.Position = UDim2.new(0, 125, 0, 0)
 AutoFish.Size = UDim2.new(0, 125, 0, 35)
 AutoFish.Font = Enum.Font.Highway
-AutoFish.Text = 'Auto Fish:✅'
+AutoFish.Text = 'Auto Fish:❎'
 AutoFish.TextColor3 = Color3.fromRGB(255, 255, 255)
 AutoFish.TextSize = 16
 
-local AutoFishToggle = true
+local AutoFishToggle = false
 AutoFish.MouseButton1Click:connect(function()
 	if AutoFishToggle == false then
 		AutoFishToggle = true
