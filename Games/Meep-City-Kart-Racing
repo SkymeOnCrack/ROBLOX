@@ -99,11 +99,11 @@ AutoWin.BorderSizePixel = 0
 AutoWin.Position = UDim2.new(0, 0, 0, 0)
 AutoWin.Size = UDim2.new(0, 250, 0, 35)
 AutoWin.Font = Enum.Font.Highway
-AutoWin.Text = 'Auto Win:✅'
+AutoWin.Text = 'Auto Win:❎'
 AutoWin.TextColor3 = Color3.fromRGB(255, 255, 255)
 AutoWin.TextSize = 16
 
-local AutoWinToggle = true
+local AutoWinToggle = false
 AutoWin.MouseButton1Click:connect(function()
 	if AutoWinToggle == false then
 		AutoWinToggle = true
