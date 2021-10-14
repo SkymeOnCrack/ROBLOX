@@ -1,0 +1,506 @@
+local Player = game:GetService('Players').LocalPlayer
+Player.Idled:connect(function()
+	game:GetService('VirtualUser'):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+	wait(1)
+	game:GetService('VirtualUser'):Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+end)
+
+local CoreGui = game:GetService('CoreGui')
+if CoreGui:FindFirstChild('KickOff') ~= nil then
+	CoreGui:FindFirstChild('KickOff'):Destroy()
+end
+local KickOff = Instance.new('ScreenGui', game:GetService('CoreGui'))
+KickOff.Name = 'KickOff'
+KickOff.ResetOnSpawn = false
+
+local Header = Instance.new('Frame', KickOff)
+Header.Name = 'Header'
+Header.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Header.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Header.BorderSizePixel = 0
+Header.Position = UDim2.new(0, -295, 0, 10)
+Header.Size = UDim2.new(0, 250, 0, 40)
+
+local Frame = Instance.new('Frame', Header)
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0, 0, 0, 40)
+Frame.Size = UDim2.new(0, 250, 0, 5)
+Frame.Name = 'Header/Background'
+
+local Hide = Instance.new('TextButton', Header)
+Hide.Name = 'Hide'
+Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Hide.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Hide.BorderSizePixel = 0
+Hide.Position = UDim2.new(0, 252, 0, 37)
+Hide.Size = UDim2.new(0, 35, 0, 35)
+Hide.Font = Enum.Font.Highway
+Hide.Text = '<'
+Hide.TextColor3 = Color3.fromRGB(255, 255, 255)
+Hide.TextSize = 28
+
+local HideToggle = false
+Hide.MouseButton1Click:connect(function()
+	if HideToggle == false then
+		CoreGui.KickOff.Header:TweenPosition(UDim2.new(0, -250, 0, 10), 'In', 'Back', 0.5)
+		wait(0.5)
+		CoreGui.KickOff.Header.Hide.Text = '>'
+		CoreGui.KickOff.Header.Close.BackgroundTransparency = 1
+		CoreGui.KickOff.Header.Hide.BackgroundTransparency = 1
+		HideToggle = true
+	else
+		if HideToggle == true then
+			CoreGui.KickOff.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
+			wait(0.5)
+			CoreGui.KickOff.Header.Hide.Text = '<'
+			CoreGui.KickOff.Header.Close.BackgroundTransparency = 0
+			CoreGui.KickOff.Header.Hide.BackgroundTransparency = 0
+			HideToggle = false
+		end
+	end
+end)
+
+local TextLabel = Instance.new('TextLabel', Header)
+TextLabel.Name = 'TextLabel'
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 250, 0, 40)
+TextLabel.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.Font = Enum.Font.Highway
+TextLabel.Text = 'Kick Off'
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 28
+
+local Notification = Instance.new('Frame', Header)
+Notification.Name = 'Notification'
+Notification.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Notification.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Notification.BorderSizePixel = 0
+Notification.Position = UDim2.new(0, 0, 0, 45)
+Notification.Size = UDim2.new(0, 250, 0, 105)
+
+local Background = Instance.new('Frame', Header)
+Background.Name = 'Background'
+Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Background.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Background.BorderSizePixel = 0
+Background.Position = UDim2.new(0, 0, 0, 45)
+Background.Size = UDim2.new(0, 250, 0, 70)
+
+local GoalKey = Instance.new('TextBox', Background)
+GoalKey.Name = 'GoalKey'
+GoalKey.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+GoalKey.BackgroundTransparency = 1
+GoalKey.BorderColor3 = Color3.fromRGB(255, 255, 255)
+GoalKey.BorderSizePixel = 0
+GoalKey.Position = UDim2.new(0, 0, 0, 0)
+GoalKey.Size = UDim2.new(0, 35, 0, 35)
+GoalKey.Font = Enum.Font.Highway
+GoalKey.Text = 'g'
+GoalKey.TextColor3 = Color3.fromRGB(255, 255, 255)
+GoalKey.TextSize = 18
+
+GoalKey.Changed:connect(function()
+	GoalKey.Text = GoalKey.Text:sub(1, 1)
+end)
+
+local Goal = Instance.new('TextButton', Background)
+Goal.Name = 'Goal'
+Goal.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Goal.BorderSizePixel = 0
+Goal.Position = UDim2.new(0, 35, 0, 0)
+Goal.Size = UDim2.new(0, 90, 0, 35)
+Goal.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Goal.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Goal.Font = Enum.Font.Highway
+Goal.Text = 'Goal'
+Goal.TextColor3 = Color3.fromRGB(255, 255, 255)
+Goal.TextSize = 16
+
+Goal.MouseButton1Click:connect(function()
+	game:GetService('Workspace').MapHolder:GetChildren()[1].BlueGoal.Position = Player.Character.HumanoidRootPart.Position
+	game:GetService('Workspace').MapHolder:GetChildren()[1].RedGoal.Position = Player.Character.HumanoidRootPart.Position
+	game:GetService('Workspace').SoccerBall.Position = Player.Character['Right Leg'].Position
+	Player.Character.Humanoid.Jump = true
+end)
+
+local InterceptKey = Instance.new('TextBox', Background)
+InterceptKey.Name = 'InterceptKey'
+InterceptKey.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+InterceptKey.BackgroundTransparency = 1
+InterceptKey.BorderColor3 = Color3.fromRGB(255, 255, 255)
+InterceptKey.BorderSizePixel = 0
+InterceptKey.Position = UDim2.new(0, 125, 0, 0)
+InterceptKey.Size = UDim2.new(0, 35, 0, 35)
+InterceptKey.Font = Enum.Font.Highway
+InterceptKey.Text = 'f'
+InterceptKey.TextColor3 = Color3.fromRGB(255, 255, 255)
+InterceptKey.TextSize = 18
+
+InterceptKey.Changed:connect(function()
+	InterceptKey.Text = InterceptKey.Text:sub(1, 1)
+end)
+
+local Intercept = Instance.new('TextButton', Background)
+Intercept.Name = 'Intercept'
+Intercept.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Intercept.BorderSizePixel = 0
+Intercept.Position = UDim2.new(0, 160, 0, 0)
+Intercept.Size = UDim2.new(0, 90, 0, 35)
+Intercept.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Intercept.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Intercept.Font = Enum.Font.Highway
+Intercept.Text = 'Intercept'
+Intercept.TextColor3 = Color3.fromRGB(255, 255, 255)
+Intercept.TextSize = 16
+
+Intercept.MouseButton1Click:connect(function()
+	local Kick = 'Kick'
+	local Trickshot = 'Trickshot'
+	local SoccerBall = game:GetService('Workspace').SoccerBall
+	local Hit = 58.777630615234
+	local Position1 = Vector3.new(9.64690495, 82.8000031, -70.1397018)
+	local Position2 = Vector3.new(25.7804337, -56.2313538, -428.990417)
+	local Position3 = Vector3.new(34.4858704, -89.2313538, -492.285004)
+	game:GetService('ReplicatedStorage').MasterKey:FireServer(Kick, Trickshot, SoccerBall, Hit, Position1, Position2, Position3)
+end)
+
+local SetWalkSpeed = Instance.new('TextBox', Background)
+SetWalkSpeed.Name = 'SetWalkSpeed'
+SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+SetWalkSpeed.BorderColor3 = Color3.fromRGB(255, 255, 255)
+SetWalkSpeed.BorderSizePixel = 0
+SetWalkSpeed.Position = UDim2.new(0, 0, 0, 35)
+SetWalkSpeed.Size = UDim2.new(0, 125, 0, 35)
+SetWalkSpeed.Font = Enum.Font.Highway
+SetWalkSpeed.Text = 'Set WalkSpeed'
+SetWalkSpeed.TextColor3 = Color3.fromRGB(255, 255, 255)
+SetWalkSpeed.TextSize = 16
+
+SetWalkSpeed.FocusLost:Connect(function()
+	if tonumber(SetWalkSpeed.Text) ~= nil then
+		Player.Character:WaitForChild('Humanoid').WalkSpeed = tonumber(SetWalkSpeed.Text)
+	end
+	SetWalkSpeed.Text = 'Set WalkSpeed'
+end)
+
+local SetJumpPower = Instance.new('TextBox', Background)
+SetJumpPower.Name = 'SetJumpPower'
+SetJumpPower.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+SetJumpPower.BorderColor3 = Color3.fromRGB(255, 255, 255)
+SetJumpPower.BorderSizePixel = 0
+SetJumpPower.Position = UDim2.new(0, 125, 0, 35)
+SetJumpPower.Size = UDim2.new(0, 125, 0, 35)
+SetJumpPower.Font = Enum.Font.Highway
+SetJumpPower.Text = 'Set JumpPower'
+SetJumpPower.TextColor3 = Color3.fromRGB(255, 255, 255)
+SetJumpPower.TextSize = 16
+
+SetJumpPower.FocusLost:Connect(function()
+	if tonumber(SetJumpPower.Text) ~= nil then
+		Player.Character:WaitForChild('Humanoid').JumpPower = tonumber(SetJumpPower.Text)
+	end
+	SetJumpPower.Text = 'Set JumpPower'
+end)
+
+local Close = Instance.new('TextButton', Header)
+Close.Name = 'Close'
+Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Close.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0, 252, 0, 0)
+Close.Size = UDim2.new(0, 35, 0, 35)
+Close.Font = Enum.Font.Highway
+Close.Text = 'X'
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close.TextSize = 28
+
+Close.MouseButton1Click:connect(function()
+	HideToggle = false
+	CoreGui.KickOff.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
+	wait(0.5)
+	CoreGui.KickOff:Destroy()
+end)
+
+local Blue = Instance.new('TextButton', Notification)
+Blue.Name = 'Blue'
+Blue.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+Blue.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Blue.BorderSizePixel = 0
+Blue.Position = UDim2.new(0, 0, 0, 70)
+Blue.Size = UDim2.new(0, 35, 0, 35)
+Blue.TextColor3 = Color3.fromRGB(255, 255, 255)
+Blue.Text = ''
+Blue.TextSize = 16
+
+Blue.MouseButton1Click:connect(function()
+	CoreGui.KickOff.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.KickOff.Header.Notification.Green.Position = UDim2.new(0, 40, 0, 70)
+	CoreGui.KickOff.Header.Notification.Grey.Position = UDim2.new(0, 75, 0, 70)
+	CoreGui.KickOff.Header.Notification.Pink.Position = UDim2.new(0, 110, 0, 70)
+	CoreGui.KickOff.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.KickOff.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.KickOff.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.KickOff.Header.Notification.Blue.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.KickOff.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Background.Goal.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Background.Intercept.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Background.SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.KickOff.Header.Background.SetJumpPower.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+end)
+
+local Green = Instance.new('TextButton', Notification)
+Green.Name = 'Green'
+Green.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+Green.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Green.BorderSizePixel = 0
+Green.Position = UDim2.new(0, 35, 0, 70)
+Green.Size = UDim2.new(0, 35, 0, 35)
+Green.TextColor3 = Color3.fromRGB(255, 255, 255)
+Green.Text = ''
+Green.TextSize = 16
+
+Green.MouseButton1Click:connect(function()
+	CoreGui.KickOff.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.KickOff.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.KickOff.Header.Notification.Grey.Position = UDim2.new(0, 75, 0, 70)
+	CoreGui.KickOff.Header.Notification.Pink.Position = UDim2.new(0, 110, 0, 70)
+	CoreGui.KickOff.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.KickOff.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.KickOff.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.KickOff.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Green.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.KickOff.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Background.Goal.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Background.Intercept.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Background.SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.KickOff.Header.Background.SetJumpPower.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+end)
+
+local Grey = Instance.new('TextButton', Notification)
+Grey.Name = 'Grey'
+Grey.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Grey.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Grey.BorderSizePixel = 0
+Grey.Position = UDim2.new(0, 70, 0, 70)
+Grey.Size = UDim2.new(0, 40, 0, 35)
+Grey.TextColor3 = Color3.fromRGB(255, 255, 255)
+Grey.Text = ''
+Grey.TextSize = 16
+
+Grey.MouseButton1Click:connect(function()
+	CoreGui.KickOff.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.KickOff.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.KickOff.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.KickOff.Header.Notification.Pink.Position = UDim2.new(0, 110, 0, 70)
+	CoreGui.KickOff.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.KickOff.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.KickOff.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.KickOff.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Grey.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.KickOff.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Notification.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Background.Goal.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Background.Intercept.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Background.SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.KickOff.Header.Background.SetJumpPower.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+end)
+
+local Pink = Instance.new('TextButton', Notification)
+Pink.Name = 'Pink'
+Pink.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+Pink.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Pink.BorderSizePixel = 0
+Pink.Position = UDim2.new(0, 110, 0, 70)
+Pink.Size = UDim2.new(0, 35, 0, 35)
+Pink.TextColor3 = Color3.fromRGB(255, 255, 255)
+Pink.Text = ''
+Pink.TextSize = 16
+
+Pink.MouseButton1Click:connect(function()
+	CoreGui.KickOff.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.KickOff.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.KickOff.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.KickOff.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.KickOff.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.KickOff.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.KickOff.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.KickOff.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Pink.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.KickOff.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Background.Goal.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Background.Intercept.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Background.SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.KickOff.Header.Background.SetJumpPower.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+end)
+
+local Purple = Instance.new('TextButton', Notification)
+Purple.Name = 'Purple'
+Purple.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+Purple.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Purple.BorderSizePixel = 0
+Purple.Position = UDim2.new(0, 145, 0, 70)
+Purple.Size = UDim2.new(0, 35, 0, 35)
+Purple.TextColor3 = Color3.fromRGB(255, 255, 255)
+Purple.Text = ''
+Purple.TextSize = 16
+
+Purple.MouseButton1Click:connect(function()
+	CoreGui.KickOff.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.KickOff.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.KickOff.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.KickOff.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.KickOff.Header.Notification.Purple.Position = UDim2.new(0, 140, 0, 70)
+	CoreGui.KickOff.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.KickOff.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.KickOff.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Purple.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.KickOff.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Background.Goal.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Background.Intercept.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Background.SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.KickOff.Header.Background.SetJumpPower.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+end)
+
+local Red = Instance.new('TextButton', Notification)
+Red.Name = 'Red'
+Red.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+Red.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Red.BorderSizePixel = 0
+Red.Position = UDim2.new(0, 180, 0, 70)
+Red.Size = UDim2.new(0, 35, 0, 35)
+Red.TextColor3 = Color3.fromRGB(255, 255, 255)
+Red.Text = ''
+Red.TextSize = 16
+
+Red.MouseButton1Click:connect(function()
+	CoreGui.KickOff.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.KickOff.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.KickOff.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.KickOff.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.KickOff.Header.Notification.Purple.Position = UDim2.new(0, 140, 0, 70)
+	CoreGui.KickOff.Header.Notification.Red.Position = UDim2.new(0, 175, 0, 70)
+	CoreGui.KickOff.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.KickOff.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Red.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.KickOff.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Background.Goal.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Background.Intercept.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Background.SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.KickOff.Header.Background.SetJumpPower.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+end)
+
+local Yellow = Instance.new('TextButton', Notification)
+Yellow.Name = 'Yellow'
+Yellow.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+Yellow.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Yellow.BorderSizePixel = 0
+Yellow.Position = UDim2.new(0, 215, 0, 70)
+Yellow.Size = UDim2.new(0, 35, 0, 35)
+Yellow.TextColor3 = Color3.fromRGB(255, 255, 255)
+Yellow.Text = ''
+Yellow.TextSize = 16
+
+Yellow.MouseButton1Click:connect(function()
+	CoreGui.KickOff.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.KickOff.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.KickOff.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.KickOff.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.KickOff.Header.Notification.Purple.Position = UDim2.new(0, 140, 0, 70)
+	CoreGui.KickOff.Header.Notification.Red.Position = UDim2.new(0, 175, 0, 70)
+	CoreGui.KickOff.Header.Notification.Yellow.Position = UDim2.new(0, 210, 0, 70)
+	CoreGui.KickOff.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.KickOff.Header.Notification.Yellow.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.KickOff.Header.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Close.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Hide.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Notification.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Background.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Background.Goal.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Background.Intercept.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Background.SetWalkSpeed.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.KickOff.Header.Background.SetJumpPower.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+end)
+CoreGui.KickOff.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
+
+Player:GetMouse().keyDown:connect(function(Key)
+	if Key == string.lower(GoalKey.Text) then
+		game:GetService('Workspace').MapHolder:GetChildren()[1].BlueGoal.Position = Player.Character.HumanoidRootPart.Position
+		game:GetService('Workspace').MapHolder:GetChildren()[1].RedGoal.Position = Player.Character.HumanoidRootPart.Position
+		game:GetService('Workspace').SoccerBall.Position = Player.Character['Right Leg'].Position
+		Player.Character.Humanoid.Jump = true
+	end
+	if Key == string.lower(InterceptKey.Text) then
+		local Kick = 'Kick'
+		local Trickshot = 'Trickshot'
+		local SoccerBall = game:GetService('Workspace').SoccerBall
+		local Hit = 58.777630615234
+		local Position1 = Vector3.new(9.64690495, 82.8000031, -70.1397018)
+		local Position2 = Vector3.new(25.7804337, -56.2313538, -428.990417)
+		local Position3 = Vector3.new(34.4858704, -89.2313538, -492.285004)
+		game:GetService('ReplicatedStorage').MasterKey:FireServer(Kick, Trickshot, SoccerBall, Hit, Position1, Position2, Position3)
+	end
+end)
