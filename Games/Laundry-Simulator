@@ -91,6 +91,14 @@ Background.BorderSizePixel = 0
 Background.Position = UDim2.new(0, 0, 0, 45)
 Background.Size = UDim2.new(0, 250, 0, 35)
 
+local Remote = game:GetService('ReplicatedStorage').Events.RemoteEvent
+local AntiLogger
+AntiLogger = hookfunction(getrawmetatable(game).__namecall, function(self, ...)
+	if self == Remote and getnamecallmethod() == "FireServer" then
+		return wait(9e9)
+	end
+	return AntiLogger(self, ...)
+end)
 Player.Gamepasses.NitroSpeed.Value = true
 
 local AutoFarm = Instance.new('TextButton', Background)
