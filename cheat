@@ -4,6 +4,9 @@ end
 if game.PlaceId == 2248408710 then --Destruction Simulator
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Destruction-Simulator', true))()
 end
+if game.PlaceId == 4950829171 then --Fart Simulator
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Fart-Simulator', true))()
+end
 if game.PlaceId == 7546582874 then --Fish Game
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Fish-Game', true))()
 end
@@ -31,6 +34,6 @@ end
 if game.PlaceId == 183364845 then --Speed Run 4
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Speed-Run-4', true))()
 end
-if game.PlaceId ~= 5811396641 and game.PlaceId ~= 2248408710 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 318978013 and game.PlaceId ~= 6305942109 and game.PlaceId ~= 370731277 and game.PlaceId ~= 18874143 and game.PlaceId ~= 942870654 and game.PlaceId ~= 967838527 and game.PlaceId ~= 969363672 and game.PlaceId ~= 6284583030 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7540891731 and game.PlaceId ~= 183364845 then --Unknown Game
+if game.PlaceId ~= 5811396641 and game.PlaceId ~= 2248408710 and game.PlaceId ~= 4950829171 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 318978013 and game.PlaceId ~= 6305942109 and game.PlaceId ~= 370731277 and game.PlaceId ~= 18874143 and game.PlaceId ~= 942870654 and game.PlaceId ~= 967838527 and game.PlaceId ~= 969363672 and game.PlaceId ~= 6284583030 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7540891731 and game.PlaceId ~= 183364845 then --Unknown Game
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Unknown-Game', true))()
 end
