@@ -386,6 +386,7 @@ while true do
 		if Level > 30 then
 			game:GetService('ReplicatedStorage').SetLevel:FireServer("Level 1")
 		else
+			wait(0.5)
 			game:GetService('ReplicatedStorage').GotStar:FireServer("Level ".. Level)
 			game:GetService('ReplicatedStorage').BeatLevel:FireServer(0.0, "Level "..Level, "Dimension", false)
 		end
