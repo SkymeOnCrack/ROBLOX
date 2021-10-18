@@ -34,7 +34,7 @@ Hide.Name = 'Hide'
 Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 Hide.BorderColor3 = Color3.fromRGB(255, 255, 255)
 Hide.BorderSizePixel = 0
-Hide.Position = UDim2.new(0, 252, 0, 37)
+Hide.Position = UDim2.new(0, 252, 0, 0)
 Hide.Size = UDim2.new(0, 35, 0, 35)
 Hide.Font = Enum.Font.Highway
 Hide.Text = '<'
@@ -47,7 +47,6 @@ Hide.MouseButton1Click:connect(function()
 		CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, -250, 0, 10), 'In', 'Back', 0.5)
 		wait(0.5)
 		CoreGui.FartSimulatorEggs.Header.Hide.Text = '>'
-		CoreGui.FartSimulatorEggs.Header.Close.BackgroundTransparency = 1
 		CoreGui.FartSimulatorEggs.Header.Hide.BackgroundTransparency = 1
 		HideToggle = true
 	else
@@ -55,7 +54,6 @@ Hide.MouseButton1Click:connect(function()
 			CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 			wait(0.5)
 			CoreGui.FartSimulatorEggs.Header.Hide.Text = '<'
-			CoreGui.FartSimulatorEggs.Header.Close.BackgroundTransparency = 0
 			CoreGui.FartSimulatorEggs.Header.Hide.BackgroundTransparency = 0
 			HideToggle = false
 		end
@@ -128,43 +126,23 @@ AutoHatchEggs.MouseButton1Click:connect(function()
 	end
 end)
 
-local CratesGUI = Instance.new('TextButton', Notification)
-CratesGUI.Name = 'CratesGUI'
-CratesGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CratesGUI.BackgroundTransparency = 1
-CratesGUI.BorderColor3 = Color3.fromRGB(255, 255, 255)
-CratesGUI.BorderSizePixel = 0
-CratesGUI.Position = UDim2.new(0, 0, 0, 105)
-CratesGUI.Size = UDim2.new(0, 35, 0, 35)
-CratesGUI.Font = Enum.Font.Highway
-CratesGUI.Text = '🔙'
+local EggsGUI = Instance.new('TextButton', Notification)
+EggsGUI.Name = 'EggsGUI'
+EggsGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.BackgroundTransparency = 1
+EggsGUI.BorderColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.BorderSizePixel = 0
+EggsGUI.Position = UDim2.new(0, 0, 0, 105)
+EggsGUI.Size = UDim2.new(0, 35, 0, 35)
+EggsGUI.Font = Enum.Font.Highway
+EggsGUI.Text = '🔙'
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-CratesGUI.TextSize = 28
+EggsGUI.TextSize = 28
 
-CratesGUI.MouseButton1Click:connect(function()
+EggsGUI.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
 	wait(0.5)
 	CoreGui.FartSimulator.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
-end)
-
-local Close = Instance.new('TextButton', Header)
-Close.Name = 'Close'
-Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-Close.BorderColor3 = Color3.fromRGB(255, 255, 255)
-Close.BorderSizePixel = 0
-Close.Position = UDim2.new(0, 252, 0, 0)
-Close.Size = UDim2.new(0, 35, 0, 35)
-Close.Font = Enum.Font.Highway
-Close.Text = 'X'
-Close.TextColor3 = Color3.fromRGB(255, 255, 255)
-Close.TextSize = 28
-
-Close.MouseButton1Click:connect(function()
-	AutoHatchEggsToggle = false
-	CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
-	wait(0.5)
-	CoreGui.FartSimulatorEggs:Destroy()
-	CoreGui.FartSimulator:Destroy()
 end)
 
 local Blue = Instance.new('TextButton', Notification)
@@ -194,7 +172,6 @@ Blue.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
-	CoreGui.FartSimulatorEggs.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulatorEggs.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulatorEggs.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
@@ -229,7 +206,6 @@ Green.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
-	CoreGui.FartSimulatorEggs.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulatorEggs.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulatorEggs.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
@@ -264,7 +240,6 @@ Grey.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-	CoreGui.FartSimulatorEggs.Header.Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulatorEggs.Header.Notification.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulatorEggs.Header.Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -299,7 +274,6 @@ Pink.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
-	CoreGui.FartSimulatorEggs.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulatorEggs.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulatorEggs.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
@@ -334,7 +308,6 @@ Purple.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
-	CoreGui.FartSimulatorEggs.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulatorEggs.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulatorEggs.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
@@ -369,7 +342,6 @@ Red.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header.Notification.Red.Size = UDim2.new(0, 40, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-	CoreGui.FartSimulatorEggs.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulatorEggs.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulatorEggs.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
@@ -404,7 +376,6 @@ Yellow.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.Notification.Yellow.Size = UDim2.new(0, 40, 0, 35)
 	CoreGui.FartSimulatorEggs.Header.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
-	CoreGui.FartSimulatorEggs.Header.Close.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulatorEggs.Header.Notification.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulatorEggs.Header.Background.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
