@@ -383,6 +383,7 @@ Close.TextSize = 28
 Close.MouseButton1Click:connect(function()
 	AutoEatToggle = false
 	AutoSellToggle = false
+	Islands['11'].SellHitPart.CFrame = OldSellPosition
 	AutoBossToggle = false
 	AutoSpawnersToggle = false
 	AutoRingsToggle = false
