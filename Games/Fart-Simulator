@@ -65,6 +65,30 @@ Hide.MouseButton1Click:connect(function()
 	end
 end)
 
+local EggsGUI = Instance.new('TextButton', Header)
+EggsGUI.Name = 'EggsGUI'
+EggsGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.BackgroundTransparency = 1
+EggsGUI.BorderColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.BorderSizePixel = 0
+EggsGUI.Position = UDim2.new(0, 252, 0, 74)
+EggsGUI.Size = UDim2.new(0, 35, 0, 35)
+EggsGUI.Font = Enum.Font.Highway
+EggsGUI.Text = '🥚'
+EggsGUI.TextColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.TextSize = 28
+
+EggsGUI.MouseButton1Click:connect(function()
+	CoreGui.FartSimulator.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
+	wait(0.5)
+	if CoreGui:FindFirstChild('FartSimulatorEggs') ~= nil then
+		CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
+	end
+	if CoreGui:FindFirstChild('FartSimulatorEggs') == nil then
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Fart-Simulator-Eggs', true))()
+	end
+end)
+
 local TextLabel = Instance.new('TextLabel', Header)
 TextLabel.Name = 'TextLabel'
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -341,30 +365,6 @@ UnlockIslands.TextSize = 16
 UnlockIslands.MouseButton1Click:connect(function()
 	if game:GetService('ReplicatedStorage').PlayerData[Player.Name].Inventory.Islands.Value ~= 12 then
 		Player.Character.HumanoidRootPart.CFrame = CFrame.new(-13.7048, 113370, 417.739)
-	end
-end)
-
-local EggsGUI = Instance.new('TextButton', Notification)
-EggsGUI.Name = 'EggsGUI'
-EggsGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-EggsGUI.BackgroundTransparency = 1
-EggsGUI.BorderColor3 = Color3.fromRGB(255, 255, 255)
-EggsGUI.BorderSizePixel = 0
-EggsGUI.Position = UDim2.new(0, 0, 0, 105)
-EggsGUI.Size = UDim2.new(0, 35, 0, 35)
-EggsGUI.Font = Enum.Font.Highway
-EggsGUI.Text = '🥚'
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-EggsGUI.TextSize = 28
-
-EggsGUI.MouseButton1Click:connect(function()
-	CoreGui.FartSimulator.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
-	wait(0.5)
-	if CoreGui:FindFirstChild('FartSimulatorEggs') ~= nil then
-		CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
-	end
-	if CoreGui:FindFirstChild('FartSimulatorEggs') == nil then
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Fart-Simulator-Eggs', true))()
 	end
 end)
 
