@@ -93,7 +93,7 @@ Background.BorderColor3 = Color3.fromRGB(255, 255, 255)
 Background.BorderSizePixel = 0
 Background.Position = UDim2.new(0, 0, 0, 45)
 Background.Size = UDim2.new(0, 250, 0, 70)
-Background.CanvasSize = UDim2.new(0, 0, 0, 105)
+Background.CanvasSize = UDim2.new(0, 0, 0, 140)
 Background.BottomImage = ''
 Background.MidImage = ''
 Background.TopImage = ''
@@ -168,6 +168,56 @@ AutoSell.MouseButton1Click:connect(function()
 	end
 end)
 
+local AutoSpawners = Instance.new('TextButton', Background)
+AutoSpawners.Name = 'AutoSpawners'
+AutoSpawners.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoSpawners.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoSpawners.BorderSizePixel = 0
+AutoSpawners.Position = UDim2.new(0, 0, 0, 35)
+AutoSpawners.Size = UDim2.new(0, 125, 0, 35)
+AutoSpawners.Font = Enum.Font.Highway
+AutoSpawners.Text = 'Auto Spawners:❎'
+AutoSpawners.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoSpawners.TextSize = 16
+
+local AutoSpawnersToggle = false
+AutoSpawners.MouseButton1Click:connect(function()
+	if AutoSpawnersToggle == false then
+		AutoSpawnersToggle = true
+		AutoSpawners.Text = 'Auto Spawners:✅'
+	else
+		if AutoSpawnersToggle == true then
+			AutoSpawnersToggle = false
+			AutoSpawners.Text = 'Auto Spawners:❎'
+		end
+	end
+end)
+
+local AutoRings = Instance.new('TextButton', Background)
+AutoRings.Name = 'AutoRings'
+AutoRings.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoRings.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoRings.BorderSizePixel = 0
+AutoRings.Position = UDim2.new(0, 125, 0, 35)
+AutoRings.Size = UDim2.new(0, 125, 0, 35)
+AutoRings.Font = Enum.Font.Highway
+AutoRings.Text = 'Auto Rings:❎'
+AutoRings.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoRings.TextSize = 16
+
+local AutoRingsToggle = false
+AutoRings.MouseButton1Click:connect(function()
+	if AutoRingsToggle == false then
+		AutoRingsToggle = true
+		AutoRings.Text = 'Auto Rings:✅'
+	else
+		if AutoRingsToggle == true then
+			AutoRingsToggle = false
+			AutoRings.Text = 'Auto Rings:❎'
+		end
+	end
+end)
+
 local AutoclickBoss = Instance.new('IntValue')
 AutoclickBoss.Name = 'Autoclick'
 AutoclickBoss.Parent = game:GetService('ReplicatedStorage')
@@ -176,7 +226,7 @@ AutoBoss.Name = 'AutoBoss'
 AutoBoss.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 AutoBoss.BorderColor3 = Color3.fromRGB(255, 255, 255)
 AutoBoss.BorderSizePixel = 0
-AutoBoss.Position = UDim2.new(0, 0, 0, 35)
+AutoBoss.Position = UDim2.new(0, 0, 0, 70)
 AutoBoss.Size = UDim2.new(0, 125, 0, 35)
 AutoBoss.Font = Enum.Font.Highway
 AutoBoss.Text = 'Auto Boss:❎'
@@ -203,7 +253,7 @@ InfinityJump.Name = 'InfinityJump'
 InfinityJump.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 InfinityJump.BorderColor3 = Color3.fromRGB(255, 255, 255)
 InfinityJump.BorderSizePixel = 0
-InfinityJump.Position = UDim2.new(0, 125, 0, 35)
+InfinityJump.Position = UDim2.new(0, 125, 0, 70)
 InfinityJump.Size = UDim2.new(0, 125, 0, 35)
 InfinityJump.Font = Enum.Font.Highway
 InfinityJump.Text = 'Infinity Jump:❎'
@@ -231,7 +281,7 @@ CollectChests.Name = 'CollectChests'
 CollectChests.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 CollectChests.BorderColor3 = Color3.fromRGB(255, 255, 255)
 CollectChests.BorderSizePixel = 0
-CollectChests.Position = UDim2.new(0, 0, 0, 70)
+CollectChests.Position = UDim2.new(0, 0, 0, 105)
 CollectChests.Size = UDim2.new(0, 125, 0, 35)
 CollectChests.Font = Enum.Font.Highway
 CollectChests.Text = 'Collect Chests'
@@ -281,7 +331,7 @@ UnlockIslands.Name = 'UnlockIslands'
 UnlockIslands.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 UnlockIslands.BorderColor3 = Color3.fromRGB(255, 255, 255)
 UnlockIslands.BorderSizePixel = 0
-UnlockIslands.Position = UDim2.new(0, 125, 0, 70)
+UnlockIslands.Position = UDim2.new(0, 125, 0, 105)
 UnlockIslands.Size = UDim2.new(0, 125, 0, 35)
 UnlockIslands.Font = Enum.Font.Highway
 UnlockIslands.Text = 'Unlock Islands'
@@ -334,6 +384,8 @@ Close.MouseButton1Click:connect(function()
 	AutoEatToggle = false
 	AutoSellToggle = false
 	AutoBossToggle = false
+	AutoSpawnersToggle = false
+	AutoRingsToggle = false
 	AutoclickEat:Destroy()
 	AutoclickBoss:Destroy()
 	game:GetService('ReplicatedStorage').PlayerData[Player.Name].Inventory.Jumps.Value = OldInfinityJumpValue
@@ -379,6 +431,8 @@ Blue.MouseButton1Click:connect(function()
 	CoreGui.FartSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulator.Header.Background.AutoEat.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.FartSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.FartSimulator.Header.Background.AutoRings.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.FartSimulator.Header.Background.CollectChests.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
@@ -418,6 +472,8 @@ Green.MouseButton1Click:connect(function()
 	CoreGui.FartSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulator.Header.Background.AutoEat.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.FartSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.FartSimulator.Header.Background.AutoRings.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.FartSimulator.Header.Background.CollectChests.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
@@ -457,6 +513,8 @@ Grey.MouseButton1Click:connect(function()
 	CoreGui.FartSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulator.Header.Background.AutoEat.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.FartSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.FartSimulator.Header.Background.AutoRings.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.FartSimulator.Header.Background.CollectChests.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -496,6 +554,8 @@ Pink.MouseButton1Click:connect(function()
 	CoreGui.FartSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulator.Header.Background.AutoEat.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.FartSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.FartSimulator.Header.Background.AutoRings.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.FartSimulator.Header.Background.CollectChests.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
@@ -535,6 +595,8 @@ Purple.MouseButton1Click:connect(function()
 	CoreGui.FartSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulator.Header.Background.AutoEat.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.FartSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.FartSimulator.Header.Background.AutoRings.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.FartSimulator.Header.Background.CollectChests.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
@@ -574,6 +636,8 @@ Red.MouseButton1Click:connect(function()
 	CoreGui.FartSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulator.Header.Background.AutoEat.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.FartSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.FartSimulator.Header.Background.AutoRings.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.FartSimulator.Header.Background.CollectChests.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
@@ -613,6 +677,8 @@ Yellow.MouseButton1Click:connect(function()
 	CoreGui.FartSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulator.Header.Background.AutoEat.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.FartSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.FartSimulator.Header.Background.AutoRings.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.FartSimulator.Header.Background.CollectChests.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
@@ -629,6 +695,18 @@ while true do
 	if AutoSellToggle == true then
 		Islands['11'].SellHitPart.CFrame = CFrame.new(0, 0, 0)
 		Islands['11'].SellHitPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+	end
+	for i, v in pairs(game:GetService('Workspace').Islands['12'].CurrencySpawners:GetChildren('Spawner')) do
+		if AutoSpawnersToggle == true then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 10, 0)
+			wait(0.5)
+		end
+	end
+	for i, v in pairs(game:GetService('Workspace').Islands['12'].CurrencyRings:GetChildren('CurrenyRing')) do
+		if AutoRingsToggle == true then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HitPart.CFrame * CFrame.new(0, 40, 0)
+			wait(0.5)
+		end
 	end
 	if AutoBossToggle == true then
 		if Islands['1'].Boss:FindFirstChild('SoulKeeper') ~= nil then
