@@ -34,7 +34,7 @@ Hide.Name = 'Hide'
 Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 Hide.BorderColor3 = Color3.fromRGB(255, 255, 255)
 Hide.BorderSizePixel = 0
-Hide.Position = UDim2.new(0, 252, 0, 37)
+Hide.Position = UDim2.new(0, 252, 0, 0)
 Hide.Size = UDim2.new(0, 35, 0, 35)
 Hide.Font = Enum.Font.Highway
 Hide.Text = '<'
@@ -47,7 +47,6 @@ Hide.MouseButton1Click:connect(function()
 		CoreGui.CorridorofEasyCrates.Header:TweenPosition(UDim2.new(0, -250, 0, 10), 'In', 'Back', 0.5)
 		wait(0.5)
 		CoreGui.CorridorofEasyCrates.Header.Hide.Text = '>'
-		CoreGui.CorridorofEasyCrates.Header.Close.BackgroundTransparency = 1
 		CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundTransparency = 1
 		HideToggle = true
 	else
@@ -55,7 +54,6 @@ Hide.MouseButton1Click:connect(function()
 			CoreGui.CorridorofEasyCrates.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 			wait(0.5)
 			CoreGui.CorridorofEasyCrates.Header.Hide.Text = '<'
-			CoreGui.CorridorofEasyCrates.Header.Close.BackgroundTransparency = 0
 			CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundTransparency = 0
 			HideToggle = false
 		end
@@ -147,26 +145,6 @@ CratesGUI.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasy.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 end)
 
-local Close = Instance.new('TextButton', Header)
-Close.Name = 'Close'
-Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-Close.BorderColor3 = Color3.fromRGB(255, 255, 255)
-Close.BorderSizePixel = 0
-Close.Position = UDim2.new(0, 252, 0, 0)
-Close.Size = UDim2.new(0, 35, 0, 35)
-Close.Font = Enum.Font.Highway
-Close.Text = 'X'
-Close.TextColor3 = Color3.fromRGB(255, 255, 255)
-Close.TextSize = 28
-
-Close.MouseButton1Click:connect(function()
-	AutoBuyCratesToggle = false
-	CoreGui.CorridorofEasyCrates.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
-	wait(0.5)
-	CoreGui.CorridorofEasyCrates:Destroy()
-	CoreGui.CorridorofEasy:Destroy()
-end)
-
 local Blue = Instance.new('TextButton', Notification)
 Blue.Name = 'Blue'
 Blue.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
@@ -194,7 +172,6 @@ Blue.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasyCrates.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
-	CoreGui.CorridorofEasyCrates.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.CorridorofEasyCrates.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
 	CoreGui.CorridorofEasyCrates.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
@@ -229,7 +206,6 @@ Green.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasyCrates.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
-	CoreGui.CorridorofEasyCrates.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.CorridorofEasyCrates.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
 	CoreGui.CorridorofEasyCrates.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
@@ -264,7 +240,6 @@ Grey.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasyCrates.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-	CoreGui.CorridorofEasyCrates.Header.Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.CorridorofEasyCrates.Header.Notification.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 	CoreGui.CorridorofEasyCrates.Header.Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -299,7 +274,6 @@ Pink.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasyCrates.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
-	CoreGui.CorridorofEasyCrates.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.CorridorofEasyCrates.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
 	CoreGui.CorridorofEasyCrates.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
@@ -334,7 +308,6 @@ Purple.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasyCrates.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
-	CoreGui.CorridorofEasyCrates.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.CorridorofEasyCrates.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 	CoreGui.CorridorofEasyCrates.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
@@ -369,7 +342,6 @@ Red.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasyCrates.Header.Notification.Red.Size = UDim2.new(0, 40, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-	CoreGui.CorridorofEasyCrates.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.CorridorofEasyCrates.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 	CoreGui.CorridorofEasyCrates.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
@@ -404,7 +376,6 @@ Yellow.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasyCrates.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.Notification.Yellow.Size = UDim2.new(0, 40, 0, 35)
 	CoreGui.CorridorofEasyCrates.Header.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
-	CoreGui.CorridorofEasyCrates.Header.Close.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.CorridorofEasyCrates.Header.Hide.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.CorridorofEasyCrates.Header.Notification.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
 	CoreGui.CorridorofEasyCrates.Header.Background.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
