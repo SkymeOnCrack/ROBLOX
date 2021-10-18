@@ -81,6 +81,10 @@ CratesGUI.TextSize = 28
 CratesGUI.MouseButton1Click:connect(function()
 	CoreGui.CorridorofEasy.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
 	wait(0.5)
+	CoreGui.CorridorofEasy.Header.Hide.Text = '<'
+	CoreGui.CorridorofEasy.Header.Close.BackgroundTransparency = 0
+	CoreGui.CorridorofEasy.Header.Hide.BackgroundTransparency = 0
+	HideToggle = false
 	if CoreGui:FindFirstChild('CorridorofEasyCrates') ~= nil then
 		CoreGui.CorridorofEasyCrates.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 	end
