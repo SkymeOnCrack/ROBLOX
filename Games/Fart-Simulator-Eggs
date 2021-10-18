@@ -76,6 +76,9 @@ EggsGUI.TextSize = 28
 EggsGUI.MouseButton1Click:connect(function()
 	CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
 	wait(0.5)
+	CoreGui.FartSimulatorEggs.Header.Hide.Text = '<'
+	CoreGui.FartSimulatorEggs.Header.Hide.BackgroundTransparency = 0
+	HideToggle = false
 	CoreGui.FartSimulator.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 end)
 
