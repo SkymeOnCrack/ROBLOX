@@ -703,13 +703,13 @@ while true do
 	end
 	for i, v in pairs(game:GetService('Workspace').Islands['12'].CurrencySpawners:GetChildren('Spawner')) do
 		if AutoSpawnersToggle == true then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 10, 0)
+			Player.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 10, 0)
 			wait(0.5)
 		end
 	end
 	for i, v in pairs(game:GetService('Workspace').Islands['12'].CurrencyRings:GetChildren('CurrenyRing')) do
 		if AutoRingsToggle == true then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HitPart.CFrame * CFrame.new(0, 40, 0)
+			Player.Character.HumanoidRootPart.CFrame = v.HitPart.CFrame * CFrame.new(0, 40, 0)
 			wait(0.5)
 		end
 	end
