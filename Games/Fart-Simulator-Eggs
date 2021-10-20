@@ -119,7 +119,7 @@ Egg.BorderSizePixel = 0
 Egg.Position = UDim2.new(0, 0,0, 0)
 Egg.Size = UDim2.new(0, 250,0, 35)
 Egg.Font = Enum.Font.Highway
-Egg.Text = "Starter Egg"
+Egg.Text = "Starter"
 Egg.TextColor3 = Color3.fromRGB(255, 255, 255)
 Egg.TextSize = 16
 
@@ -389,7 +389,15 @@ CoreGui.FartSimulatorEggs.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Ba
 
 while true do
 	if AutoHatchEggsToggle == true then
-		game:GetService('ReplicatedStorage').RemoteFunctions.RequestPurchase:InvokeServer("EggX3", Egg.Text)
+		local Word = Egg.Text
+		local Split = string.split(Word, ' ')
+		for i, v in pairs(Split) do
+			local First = v:sub(1, 1)
+			local Rest = v:sub(2)
+			Split[i] = First:upper().. Rest:lower()
+		end
+		local Result = table.concat(Split, ' ')
+		game:GetService('ReplicatedStorage').RemoteFunctions.RequestPurchase:InvokeServer("EggX3", Result.. ' Egg')
 	end
 	wait()
 end
