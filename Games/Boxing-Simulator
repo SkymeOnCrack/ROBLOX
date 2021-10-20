@@ -1,0 +1,742 @@
+local Player = game:GetService('Players').LocalPlayer
+Player.Idled:connect(function()
+	game:GetService('VirtualUser'):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+	wait(1)
+	game:GetService('VirtualUser'):Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+end)
+
+local CoreGui = game:GetService('CoreGui')
+if CoreGui:FindFirstChild('BoxingSimulator') ~= nil then
+	CoreGui:FindFirstChild('BoxingSimulator'):Destroy()
+end
+if CoreGui:FindFirstChild('BoxingSimulatorEggs') ~= nil then
+	CoreGui:FindFirstChild('BoxingSimulatorEggs'):Destroy()
+end
+local BoxingSimulator = Instance.new('ScreenGui', game:GetService('CoreGui'))
+BoxingSimulator.Name = 'BoxingSimulator'
+BoxingSimulator.ResetOnSpawn = false
+
+local Header = Instance.new('Frame', BoxingSimulator)
+Header.Name = 'Header'
+Header.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Header.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Header.BorderSizePixel = 0
+Header.Position = UDim2.new(0, -295, 0, 10)
+Header.Size = UDim2.new(0, 250, 0, 40)
+
+local Frame = Instance.new('Frame', Header)
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0, 0, 0, 40)
+Frame.Size = UDim2.new(0, 250, 0, 5)
+Frame.Name = 'Header/Background'
+
+local Hide = Instance.new('TextButton', Header)
+Hide.Name = 'Hide'
+Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Hide.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Hide.BorderSizePixel = 0
+Hide.Position = UDim2.new(0, 252, 0, 37)
+Hide.Size = UDim2.new(0, 35, 0, 35)
+Hide.Font = Enum.Font.Highway
+Hide.Text = '<'
+Hide.TextColor3 = Color3.fromRGB(255, 255, 255)
+Hide.TextSize = 28
+
+local HideToggle = false
+Hide.MouseButton1Click:connect(function()
+	if HideToggle == false then
+		CoreGui.BoxingSimulator.Header:TweenPosition(UDim2.new(0, -250, 0, 10), 'In', 'Back', 0.5)
+		wait(0.5)
+		CoreGui.BoxingSimulator.Header.Hide.Text = '>'
+		CoreGui.BoxingSimulator.Header.Close.BackgroundTransparency = 1
+		CoreGui.BoxingSimulator.Header.Hide.BackgroundTransparency = 1
+		HideToggle = true
+	else
+		if HideToggle == true then
+			CoreGui.BoxingSimulator.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
+			wait(0.5)
+			CoreGui.BoxingSimulator.Header.Hide.Text = '<'
+			CoreGui.BoxingSimulator.Header.Close.BackgroundTransparency = 0
+			CoreGui.BoxingSimulator.Header.Hide.BackgroundTransparency = 0
+			HideToggle = false
+		end
+	end
+end)
+
+local EggsGUI = Instance.new('TextButton', Header)
+EggsGUI.Name = 'EggsGUI'
+EggsGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.BackgroundTransparency = 1
+EggsGUI.BorderColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.BorderSizePixel = 0
+EggsGUI.Position = UDim2.new(0, 252, 0, 74)
+EggsGUI.Size = UDim2.new(0, 35, 0, 35)
+EggsGUI.Font = Enum.Font.Highway
+EggsGUI.Text = '🥚'
+EggsGUI.TextColor3 = Color3.fromRGB(255, 255, 255)
+EggsGUI.TextSize = 28
+
+EggsGUI.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
+	wait(0.5)
+	CoreGui.BoxingSimulator.Header.Hide.Text = '<'
+	CoreGui.BoxingSimulator.Header.Close.BackgroundTransparency = 0
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundTransparency = 0
+	HideToggle = false
+	if CoreGui:FindFirstChild('BoxingSimulatorEggs') ~= nil then
+		CoreGui.BoxingSimulatorEggs.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
+	end
+	if CoreGui:FindFirstChild('BoxingSimulatorEggs') == nil then
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Boxing-Simulator-Eggs', true))()
+	end
+end)
+
+local TextLabel = Instance.new('TextLabel', Header)
+TextLabel.Name = 'TextLabel'
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 250, 0, 40)
+TextLabel.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.Font = Enum.Font.Highway
+TextLabel.Text = 'Boxing Simulator'
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 28
+
+local Notification = Instance.new('Frame', Header)
+Notification.Name = 'Notification'
+Notification.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Notification.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Notification.BorderSizePixel = 0
+Notification.Position = UDim2.new(0, 0, 0, 45)
+Notification.Size = UDim2.new(0, 250, 0, 105)
+
+local Background = Instance.new('ScrollingFrame', Header)
+Background.Name = 'Background'
+Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Background.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Background.BorderSizePixel = 0
+Background.Position = UDim2.new(0, 0, 0, 45)
+Background.Size = UDim2.new(0, 250, 0, 70)
+Background.CanvasSize = UDim2.new(0, 0, 0, 140)
+Background.BottomImage = ''
+Background.MidImage = ''
+Background.TopImage = ''
+
+Background.MouseEnter:Connect(function()
+	Background.BottomImage = 'rbxasset://textures/ui/Scroll/scroll-bottom.png'
+	Background.MidImage = 'rbxasset://textures/ui/Scroll/scroll-middle.png'
+	Background.TopImage = 'rbxasset://textures/ui/Scroll/scroll-top.png'
+end)
+
+Background.MouseLeave:Connect(function()
+	Background.BottomImage = ''
+	Background.MidImage = ''
+	Background.TopImage = ''
+end)
+
+local AutoPunch = Instance.new('TextButton', Background)
+AutoPunch.Name = 'AutoPunch'
+AutoPunch.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoPunch.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoPunch.BorderSizePixel = 0
+AutoPunch.Position = UDim2.new(0, 0, 0, 0)
+AutoPunch.Size = UDim2.new(0, 125, 0, 35)
+AutoPunch.Font = Enum.Font.Highway
+AutoPunch.Text = 'Auto Punch:❎'
+AutoPunch.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoPunch.TextSize = 16
+
+local AutoPunchToggle = false
+AutoPunch.MouseButton1Click:connect(function()
+	if AutoPunchToggle == false then
+		AutoPunchToggle = true
+		AutoPunch.Text = 'Auto Punch:✅'
+	else
+		if AutoPunchToggle == true then
+			AutoPunchToggle = false
+			AutoPunch.Text = 'Auto Punch:❎'
+		end
+	end
+end)
+
+local AutoSell = Instance.new('TextButton', Background)
+AutoSell.Name = 'AutoSell'
+AutoSell.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoSell.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoSell.BorderSizePixel = 0
+AutoSell.Position = UDim2.new(0, 125, 0, 0)
+AutoSell.Size = UDim2.new(0, 125, 0, 35)
+AutoSell.Font = Enum.Font.Highway
+AutoSell.Text = 'Auto Sell:❎'
+AutoSell.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoSell.TextSize = 16
+
+local AutoSellToggle = false
+AutoSell.MouseButton1Click:connect(function()
+	if AutoSellToggle == false then
+		AutoSellToggle = true
+		AutoSell.Text = 'Auto Sell:✅'
+	else
+		if AutoSellToggle == true then
+			AutoSellToggle = false
+			AutoSell.Text = 'Auto Sell:❎'
+		end
+	end
+end)
+
+local AutoBuy = Instance.new('TextButton', Background)
+AutoBuy.Name = 'AutoBuy'
+AutoBuy.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoBuy.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoBuy.BorderSizePixel = 0
+AutoBuy.Position = UDim2.new(0, 0, 0, 35)
+AutoBuy.Size = UDim2.new(0, 125, 0, 35)
+AutoBuy.Font = Enum.Font.Highway
+AutoBuy.Text = 'Auto Buy:❎'
+AutoBuy.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoBuy.TextSize = 16
+
+local AutoBuyToggle = false
+AutoBuy.MouseButton1Click:connect(function()
+	if AutoBuyToggle == false then
+		AutoBuyToggle = true
+		AutoBuy.Text = 'Auto Buy:✅'
+	else
+		if AutoBuyToggle == true then
+			AutoBuyToggle = false
+			AutoBuy.Text = 'Auto Buy:❎'
+		end
+	end
+end)
+
+local AutoBoss = Instance.new('TextButton', Background)
+AutoBoss.Name = 'AutoBoss'
+AutoBoss.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoBoss.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoBoss.BorderSizePixel = 0
+AutoBoss.Position = UDim2.new(0, 125, 0, 35)
+AutoBoss.Size = UDim2.new(0, 125, 0, 35)
+AutoBoss.Font = Enum.Font.Highway
+AutoBoss.Text = 'Auto Boss:❎'
+AutoBoss.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoBoss.TextSize = 16
+
+local AutoBossToggle = false
+AutoBoss.MouseButton1Click:connect(function()
+	if AutoBossToggle == false then
+		AutoBossToggle = true
+		AutoBoss.Text = 'Auto Boss:✅'
+	else
+		if AutoBossToggle == true then
+			AutoBossToggle = false
+			AutoBoss.Text = 'Auto Boss:❎'
+		end
+	end
+end)
+
+local AutoSpawners = Instance.new('TextButton', Background)
+AutoSpawners.Name = 'AutoSpawners'
+AutoSpawners.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoSpawners.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoSpawners.BorderSizePixel = 0
+AutoSpawners.Position = UDim2.new(0, 0, 0, 70)
+AutoSpawners.Size = UDim2.new(0, 125, 0, 35)
+AutoSpawners.Font = Enum.Font.Highway
+AutoSpawners.Text = 'Auto Spawners:❎'
+AutoSpawners.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoSpawners.TextSize = 16
+
+local AutoSpawnersToggle = false
+AutoSpawners.MouseButton1Click:connect(function()
+	if AutoSpawnersToggle == false then
+		AutoSpawnersToggle = true
+		AutoSpawners.Text = 'Auto Spawners:✅'
+	else
+		if AutoSpawnersToggle == true then
+			AutoSpawnersToggle = false
+			AutoSpawners.Text = 'Auto Spawners:❎'
+		end
+	end
+end)
+
+local AutoGems = Instance.new('TextButton', Background)
+AutoGems.Name = 'AutoGems'
+AutoGems.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+AutoGems.BorderColor3 = Color3.fromRGB(255, 255, 255)
+AutoGems.BorderSizePixel = 0
+AutoGems.Position = UDim2.new(0, 125, 0, 70)
+AutoGems.Size = UDim2.new(0, 125, 0, 35)
+AutoGems.Font = Enum.Font.Highway
+AutoGems.Text = 'Auto Gems:❎'
+AutoGems.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoGems.TextSize = 16
+
+local AutoGemsToggle = false
+AutoGems.MouseButton1Click:connect(function()
+	if AutoGemsToggle == false then
+		AutoGemsToggle = true
+		AutoGems.Text = 'Auto Gems:✅'
+	else
+		if AutoGemsToggle == true then
+			AutoGemsToggle = false
+			AutoGems.Text = 'Auto Gems:❎'
+		end
+	end
+end)
+
+local InfinityJump = Instance.new('TextButton', Background)
+InfinityJump.Name = 'InfinityJump'
+InfinityJump.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+InfinityJump.BorderColor3 = Color3.fromRGB(255, 255, 255)
+InfinityJump.BorderSizePixel = 0
+InfinityJump.Position = UDim2.new(0, 0, 0, 105)
+InfinityJump.Size = UDim2.new(0, 125, 0, 35)
+InfinityJump.Font = Enum.Font.Highway
+InfinityJump.Text = 'Infinity Jump:❎'
+InfinityJump.TextColor3 = Color3.fromRGB(255, 255, 255)
+InfinityJump.TextSize = 16
+
+local InfinityJumpToggle = false
+local OldInfinityJumpValue = Player.Data.DoubleJumps.Value
+InfinityJump.MouseButton1Click:connect(function()
+	if InfinityJumpToggle == false then
+		InfinityJumpToggle = true
+		Player.Data.DoubleJumps.Value = 9999
+		InfinityJump.Text = 'Infinity Jump:✅'
+	else
+		if InfinityJumpToggle == true then
+			InfinityJumpToggle = false
+			Player.Data.DoubleJumps.Value = OldInfinityJumpValue
+			InfinityJump.Text = 'Infinity Jump:❎'
+		end
+	end
+end)
+
+local UnlockIslands = Instance.new('TextButton', Background)
+UnlockIslands.Name = 'UnlockIslands'
+UnlockIslands.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+UnlockIslands.BorderColor3 = Color3.fromRGB(255, 255, 255)
+UnlockIslands.BorderSizePixel = 0
+UnlockIslands.Position = UDim2.new(0, 125, 0, 105)
+UnlockIslands.Size = UDim2.new(0, 125, 0, 35)
+UnlockIslands.Font = Enum.Font.Highway
+UnlockIslands.Text = 'Unlock Islands'
+UnlockIslands.TextColor3 = Color3.fromRGB(255, 255, 255)
+UnlockIslands.TextSize = 16
+
+UnlockIslands.MouseButton1Click:connect(function()
+	for i, v in pairs(Player.Islands:GetChildren()) do
+		v.Value = true
+	end
+end)
+
+local HidePopups = Instance.new('TextButton', Notification)
+HidePopups.Name = 'HidePopups'
+HidePopups.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HidePopups.BackgroundTransparency = 1
+HidePopups.BorderColor3 = Color3.fromRGB(255, 255, 255)
+HidePopups.BorderSizePixel = 0
+HidePopups.Position = UDim2.new(0, 0, 0, 105)
+HidePopups.Size = UDim2.new(0, 125, 0, 35)
+HidePopups.Font = Enum.Font.Highway
+HidePopups.Text = 'Hide Popups: OFF'
+HidePopups.TextColor3 = Color3.fromRGB(255, 255, 255)
+HidePopups.TextSize = 16
+
+local HidePopupsToggle = false
+HidePopups.MouseButton1Click:connect(function()
+	if HidePopupsToggle == false then
+		HidePopupsToggle = true
+		Player.Settings.PopupEffectsEnabled.Value = false
+		HidePopups.Text = 'Hide Popups: ON'
+	else
+		if HidePopupsToggle == true then
+			HidePopupsToggle = false
+			Player.Settings.PopupEffectsEnabled.Value = true
+			HidePopups.Text = 'Hide Popups: OFF'
+		end
+	end
+end)
+
+local Close = Instance.new('TextButton', Header)
+Close.Name = 'Close'
+Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Close.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0, 252, 0, 0)
+Close.Size = UDim2.new(0, 35, 0, 35)
+Close.Font = Enum.Font.Highway
+Close.Text = 'X'
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close.TextSize = 28
+
+Close.MouseButton1Click:connect(function()
+	AutoPunchToggle = false
+	AutoSellToggle = false
+	AutoBuyToggle = false
+	AutoBossToggle = false
+	AutoSpawnersToggle = false
+	AutoGemsToggle = false
+	InfinityJumpToggle = false
+	Player.Data.DoubleJumps.Value = OldInfinityJumpValue
+	HidePopupsToggle = false
+	HideToggle = false
+	CoreGui.BoxingSimulator.Header:TweenPosition(UDim2.new(0, -295, 0, 10), 'In', 'Back', 0.5)
+	wait(0.5)
+	CoreGui.BoxingSimulator:Destroy()
+	if CoreGui:FindFirstChild('BoxingSimulatorEggs') ~= nil then
+		CoreGui.BoxingSimulatorEggs:Destroy()
+	end
+end)
+
+local Blue = Instance.new('TextButton', Notification)
+Blue.Name = 'Blue'
+Blue.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+Blue.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Blue.BorderSizePixel = 0
+Blue.Position = UDim2.new(0, 0, 0, 70)
+Blue.Size = UDim2.new(0, 35, 0, 35)
+Blue.TextColor3 = Color3.fromRGB(255, 255, 255)
+Blue.Text = ''
+Blue.TextSize = 16
+
+Blue.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Position = UDim2.new(0, 40, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Position = UDim2.new(0, 75, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Position = UDim2.new(0, 110, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoPunch.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoBuy.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoGems.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+	CoreGui.BoxingSimulator.Header.Background.UnlockIslands.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+end)
+
+local Green = Instance.new('TextButton', Notification)
+Green.Name = 'Green'
+Green.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+Green.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Green.BorderSizePixel = 0
+Green.Position = UDim2.new(0, 35, 0, 70)
+Green.Size = UDim2.new(0, 35, 0, 35)
+Green.TextColor3 = Color3.fromRGB(255, 255, 255)
+Green.Text = ''
+Green.TextSize = 16
+
+Green.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Position = UDim2.new(0, 75, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Position = UDim2.new(0, 110, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Close.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Notification.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoPunch.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoBuy.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoGems.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+	CoreGui.BoxingSimulator.Header.Background.UnlockIslands.BackgroundColor3 = Color3.fromRGB(0, 85, 0)
+end)
+
+local Grey = Instance.new('TextButton', Notification)
+Grey.Name = 'Grey'
+Grey.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Grey.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Grey.BorderSizePixel = 0
+Grey.Position = UDim2.new(0, 70, 0, 70)
+Grey.Size = UDim2.new(0, 40, 0, 35)
+Grey.TextColor3 = Color3.fromRGB(255, 255, 255)
+Grey.Text = ''
+Grey.TextSize = 16
+
+Grey.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Position = UDim2.new(0, 110, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Close.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Notification.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.AutoPunch.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.AutoBuy.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.AutoGems.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	CoreGui.BoxingSimulator.Header.Background.UnlockIslands.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+end)
+
+local Pink = Instance.new('TextButton', Notification)
+Pink.Name = 'Pink'
+Pink.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+Pink.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Pink.BorderSizePixel = 0
+Pink.Position = UDim2.new(0, 110, 0, 70)
+Pink.Size = UDim2.new(0, 35, 0, 35)
+Pink.TextColor3 = Color3.fromRGB(255, 255, 255)
+Pink.Text = ''
+Pink.TextSize = 16
+
+Pink.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Position = UDim2.new(0, 145, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.AutoPunch.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.AutoBuy.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.AutoGems.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+	CoreGui.BoxingSimulator.Header.Background.UnlockIslands.BackgroundColor3 = Color3.fromRGB(170, 0, 127)
+end)
+
+local Purple = Instance.new('TextButton', Notification)
+Purple.Name = 'Purple'
+Purple.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+Purple.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Purple.BorderSizePixel = 0
+Purple.Position = UDim2.new(0, 145, 0, 70)
+Purple.Size = UDim2.new(0, 35, 0, 35)
+Purple.TextColor3 = Color3.fromRGB(255, 255, 255)
+Purple.Text = ''
+Purple.TextSize = 16
+
+Purple.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Position = UDim2.new(0, 140, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Position = UDim2.new(0, 180, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoPunch.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoBuy.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.AutoGems.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+	CoreGui.BoxingSimulator.Header.Background.UnlockIslands.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+end)
+
+local Red = Instance.new('TextButton', Notification)
+Red.Name = 'Red'
+Red.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+Red.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Red.BorderSizePixel = 0
+Red.Position = UDim2.new(0, 180, 0, 70)
+Red.Size = UDim2.new(0, 35, 0, 35)
+Red.TextColor3 = Color3.fromRGB(255, 255, 255)
+Red.Text = ''
+Red.TextSize = 16
+
+Red.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Position = UDim2.new(0, 140, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Position = UDim2.new(0, 175, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Position = UDim2.new(0, 215, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Close.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Notification.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoPunch.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoBuy.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoGems.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	CoreGui.BoxingSimulator.Header.Background.UnlockIslands.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+end)
+
+local Yellow = Instance.new('TextButton', Notification)
+Yellow.Name = 'Yellow'
+Yellow.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+Yellow.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Yellow.BorderSizePixel = 0
+Yellow.Position = UDim2.new(0, 215, 0, 70)
+Yellow.Size = UDim2.new(0, 35, 0, 35)
+Yellow.TextColor3 = Color3.fromRGB(255, 255, 255)
+Yellow.Text = ''
+Yellow.TextSize = 16
+
+Yellow.MouseButton1Click:connect(function()
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Position = UDim2.new(0, 0, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Position = UDim2.new(0, 35, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Position = UDim2.new(0, 70, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Position = UDim2.new(0, 105, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Position = UDim2.new(0, 140, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Position = UDim2.new(0, 175, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Position = UDim2.new(0, 210, 0, 70)
+	CoreGui.BoxingSimulator.Header.Notification.Blue.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Green.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Grey.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Pink.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Purple.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Red.Size = UDim2.new(0, 35, 0, 35)
+	CoreGui.BoxingSimulator.Header.Notification.Yellow.Size = UDim2.new(0, 40, 0, 35)
+	CoreGui.BoxingSimulator.Header.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Close.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Hide.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Notification.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoPunch.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoSell.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoBuy.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoBoss.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoSpawners.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.AutoGems.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.InfinityJump.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+	CoreGui.BoxingSimulator.Header.Background.UnlockIslands.BackgroundColor3 = Color3.fromRGB(200, 200, 0)
+end)
+CoreGui.BoxingSimulator.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
+
+while true do
+	if AutoPunchToggle == true then
+		if Player.Backpack:FindFirstChildOfClass('Tool') then
+			Player.Backpack:FindFirstChildOfClass('Tool').Parent = Player.Character
+		else
+			Player.Character:FindFirstChildOfClass('Tool'):Activate()
+		end
+	end
+	if AutoSellToggle == true then
+		game:GetService('ReplicatedStorage').Events.SellRequest:FireServer(true)
+	end
+	if AutoBuyToggle == true then
+		game:GetService('ReplicatedStorage').Events.BuyAllDNA:FireServer()
+		game:GetService('ReplicatedStorage').Events.BuyAllGlove:FireServer()
+		game:GetService('ReplicatedStorage').Events.BuyClass:FireServer(Player.Data.EquippedClass.Value + 1)
+	end
+	if AutoBossToggle == true then
+		if game:GetService('Workspace').Boss.Pirate ~= nil then
+			if Player.Backpack:FindFirstChildOfClass('Tool') then
+				Player.Backpack:FindFirstChildOfClass('Tool').Parent = Player.Character
+			else
+				Player.Character.HumanoidRootPart.CFrame = game:GetService('Workspace').Boss.Pirate.HumanoidRootPart.CFrame
+				Player.Character:FindFirstChildOfClass('Tool'):Activate()
+			end
+		end
+	end
+	for i, v in pairs(game:GetService('Workspace').Canes:GetChildren()) do
+		if AutoSpawnersToggle == true then
+			local OldCanePosition = v.HumanoidRootPart.CFrame
+			v.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+			wait()
+			v.HumanoidRootPart.CFrame = OldCanePosition
+		end
+	end
+	for i, v in pairs(game:GetService('Workspace').Coins:GetChildren()) do
+		if AutoSpawnersToggle == true then
+			local OldCoinPosition = v.HumanoidRootPart.CFrame
+			v.HumanoidRootPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+			wait()
+			v.HumanoidRootPart.CFrame = OldCoinPosition
+		end
+	end
+	for i, v in pairs(game:GetService('Workspace').Boxes:GetChildren()) do
+		if AutoGemsToggle == true then
+			if Player.Backpack:FindFirstChildOfClass('Tool') then
+				Player.Backpack:FindFirstChildOfClass('Tool').Parent = Player.Character
+			else
+				local OldBoxPosition = v.Root.CFrame
+				v.HealthUI.Enabled = false
+				v.Root.CFrame = Player.Character.HumanoidRootPart.CFrame
+				Player.Character:FindFirstChildOfClass('Tool'):Activate()
+				wait()
+				v.Root.CFrame = OldBoxPosition
+				v.HealthUI.Enabled = true
+			end
+		end
+	end
+	wait()
+end
