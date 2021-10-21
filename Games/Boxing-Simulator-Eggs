@@ -407,6 +407,9 @@ while true do
 		if string.lower(Egg.Text) == 'american' then
 			game:GetService('ReplicatedStorage').Events.BuyEgg:FireServer("america", false)
 		end
+		if string.lower(Egg.Text) == 'halloween' then
+			game:GetService('ReplicatedStorage').Events.BuyEgg:FireServer("halloween", false)
+		end
 		if string.lower(Egg.Text) == 'epic' then
 			game:GetService('ReplicatedStorage').Events.BuyEgg:FireServer("godly", false)
 		end
