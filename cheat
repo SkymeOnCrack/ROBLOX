@@ -4,6 +4,9 @@ end
 if game.PlaceId == 2551991523 then --Broken Bones IV
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Broken-Bones-IV', true))()
 end
+if game.PlaceId == 537413528 then --Build A Boat For Treasure
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Build-A-Boat-For-Treasure', true))()
+end
 if game.PlaceId == 5811396641 then --Corridor of Easy
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Corridor-of-Easy', true))()
 end
@@ -46,6 +49,6 @@ end
 if game.PlaceId == 183364845 then --Speed Run 4
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Speed-Run-4', true))()
 end
-if game.PlaceId ~= 4058282580 and game.PlaceId ~= 2551991523 and game.PlaceId ~= 5811396641 and game.PlaceId ~= 2248408710 and game.PlaceId ~= 4950829171 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 318978013 and game.PlaceId ~= 6305942109 and game.PlaceId ~= 370731277 and game.PlaceId ~= 18874143 and game.PlaceId ~= 942870654 and game.PlaceId ~= 967838527 and game.PlaceId ~= 969363672 and game.PlaceId ~= 6284583030 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7540891731 and game.PlaceId ~= 188578198 and game.PlaceId ~= 2017976530 and game.PlaceId ~= 183364845 then --Unknown Game
+if game.PlaceId ~= 4058282580 and game.PlaceId ~= 2551991523 and game.PlaceId ~= 537413528 and game.PlaceId ~= 5811396641 and game.PlaceId ~= 2248408710 and game.PlaceId ~= 4950829171 and game.PlaceId ~= 7546582874 and game.PlaceId ~= 318978013 and game.PlaceId ~= 6305942109 and game.PlaceId ~= 370731277 and game.PlaceId ~= 18874143 and game.PlaceId ~= 942870654 and game.PlaceId ~= 967838527 and game.PlaceId ~= 969363672 and game.PlaceId ~= 6284583030 and game.PlaceId ~= 7577073048 and game.PlaceId ~= 7540891731 and game.PlaceId ~= 188578198 and game.PlaceId ~= 2017976530 and game.PlaceId ~= 183364845 then --Unknown Game
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/Games/Unknown-Game', true))()
 end
