@@ -99,7 +99,7 @@ Egg.BorderSizePixel = 0
 Egg.Position = UDim2.new(0, 0,0, 0)
 Egg.Size = UDim2.new(0, 250,0, 35)
 Egg.Font = Enum.Font.Highway
-Egg.Text = "Cracked Egg"
+Egg.Text = "Cracked"
 Egg.TextColor3 = Color3.fromRGB(255, 255, 255)
 Egg.TextSize = 16
 
@@ -427,11 +427,19 @@ end)
 CoreGui.PetSimulatorX.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 
 while true do
+	local Word = Egg.Text
+	local Split = string.split(Word, ' ')
+	for i, v in pairs(Split) do
+		local First = v:sub(1, 1)
+		local Rest = v:sub(2)
+		Split[i] = First:upper().. Rest:lower()
+	end
+	local Result = table.concat(Split, ' ')
 	if HatchRegularToggle == true then
-		game:GetService('Workspace')["__THINGS"]["__REMOTES"]["buy egg"]:InvokeServer({Egg.Text, false})
+		game:GetService('Workspace')["__THINGS"]["__REMOTES"]["buy egg"]:InvokeServer({Result.. ' Egg', false})
 	end
 	if HatchGoldenToggle == true then
-		game:GetService('Workspace')["__THINGS"]["__REMOTES"]["buy egg"]:InvokeServer({'Golden '.. Egg.Text, false})
+		game:GetService('Workspace')["__THINGS"]["__REMOTES"]["buy egg"]:InvokeServer({'Golden '.. Result.. ' Egg', false})
 	end
 	wait()
 end
