@@ -143,6 +143,7 @@ AutoStrength.MouseButton1Click:connect(function()
 		if AutoStrengthToggle == true then
 			AutoStrengthToggle = false
 			AutoStrength.Text = 'Auto Strength:❎'
+			Player.Character.Humanoid:UnequipTools()
 		end
 	end
 end)
@@ -552,7 +553,7 @@ CoreGui.MuscleLegends.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back',
 while true do
 	if AutoStrengthToggle == true then
 		for i, v in pairs(Player.Backpack:GetChildren()) do
-			if v.Name ~= 'Punch' then
+			if v.Name ~= 'Punch' and v.Name ~= 'Ground Slam' and v.Name ~= 'Stomp' then
 				v.Parent = Player.Character
 			end
 		end
