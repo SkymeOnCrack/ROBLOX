@@ -681,6 +681,11 @@ Yellow.MouseButton1Click:connect(function()
 end)
 CoreGui.BoxingSimulator.Header:TweenPosition(UDim2.new(0, 5, 0, 10), 'In', 'Back', 0.5)
 
+Player.Data.EquippedClass.Changed:Connect(function()
+	wait(1)
+	Player.Character.Humanoid:UnequipTools()
+end)
+
 while true do
 	if AutoPunchToggle == true then
 		if Player.Backpack:FindFirstChildOfClass('Tool') then
@@ -693,9 +698,12 @@ while true do
 		game:GetService('ReplicatedStorage').Events.SellRequest:FireServer(true)
 	end
 	if AutoBuyToggle == true then
-		game:GetService('ReplicatedStorage').Events.BuyAllDNA:FireServer()
-		game:GetService('ReplicatedStorage').Events.BuyAllGlove:FireServer()
-		game:GetService('ReplicatedStorage').Events.BuyClass:FireServer(Player.Data.EquippedClass.Value + 1)
+		local Frame = Player.PlayerGui.Progress.Frame
+		if Frame.DNA.Clipped.Full.Fill.BackgroundColor3 == Color3.fromRGB(95, 255, 84) or Frame.Gloves.Clipped.Full.Fill.BackgroundColor3 == Color3.fromRGB(95, 255, 84) then
+			game:GetService('ReplicatedStorage').Events.BuyAllDNA:FireServer()
+			game:GetService('ReplicatedStorage').Events.BuyAllGlove:FireServer()
+			game:GetService('ReplicatedStorage').Events.BuyClass:FireServer(Player.Data.HighestClass.Value + 1)
+		end
 	end
 	if AutoBossToggle == true then
 		if game:GetService('Workspace').Boss.Pirate ~= nil then
