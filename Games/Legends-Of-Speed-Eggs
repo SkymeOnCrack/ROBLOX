@@ -91,7 +91,7 @@ TextLabel.Position = UDim2.new(0, 0, 0, 0)
 TextLabel.Size = UDim2.new(0, 250, 0, 40)
 TextLabel.BorderColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.Font = Enum.Font.Highway
-TextLabel.Text = 'Legends Of SpeedEggs'
+TextLabel.Text = 'Legends Of Speed'
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 28
 
