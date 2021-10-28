@@ -120,6 +120,7 @@ local SquidToggle = false
 AutoWin.MouseButton1Click:connect(function()
 	if AutoWinToggle == false then
 		AutoWinToggle = true
+		AutoWin.Text = 'Auto Win:✅'
 		if Round.Value == 'GreenRedLight' then
 			GreenRedLightToggle = true
 		end
@@ -138,11 +139,9 @@ AutoWin.MouseButton1Click:connect(function()
 		if Round.Value == 'Squid' then
 			SquidToggle = true
 		end
-		AutoWin.Text = 'Auto Win:✅'
 	else
 		if AutoWinToggle == true then
 			AutoWinToggle = false
-			Player.Character.HumanoidRootPart.Anchored = false
 			AutoWin.Text = 'Auto Win:❎'
 		end
 	end
@@ -505,8 +504,11 @@ while true do
 					game:GetService('ReplicatedStorage').Remotes.PunchEvent:FireServer(v.Character)
 				end
 			end
-			Player.Character.HumanoidRootPart.Anchored = true
-			Player.Character.HumanoidRootPart.CFrame = CFrame.new(-314.337, 14.036, 326.961)
+			local TeleportPad = Vector3.new(-314.337, 3.036, 326.961)
+			local Magnitude1 = (TeleportPad - Player.Character.HumanoidRootPart.Position).magnitude
+			if Magnitude1 > 5 then
+				Player.Character.HumanoidRootPart.CFrame = CFrame.new(-314.337, 3.036, 326.961)
+			end
 		end
 	end
 	wait()
