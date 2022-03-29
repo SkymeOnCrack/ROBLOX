@@ -74,7 +74,7 @@ EggsGUI.BorderSizePixel = 0
 EggsGUI.Position = UDim2.new(0, 252, 0, 74)
 EggsGUI.Size = UDim2.new(0, 35, 0, 35)
 EggsGUI.Font = Enum.Font.Highway
-EggsGUI.Text = '🥚'
+EggsGUI.Text = '💎'
 EggsGUI.TextColor3 = Color3.fromRGB(255, 255, 255)
 EggsGUI.TextSize = 28
 
@@ -181,7 +181,7 @@ SafeIsland.BorderSizePixel = 0
 SafeIsland.Position = UDim2.new(0, 0, 0, 35)
 SafeIsland.Size = UDim2.new(0, 125, 0, 35)
 SafeIsland.Font = Enum.Font.Highway
-SafeIsland.Text = 'Safe Island:❎'
+SafeIsland.Text = 'Dont Disturb Island:❎'
 SafeIsland.TextColor3 = Color3.fromRGB(255, 255, 255)
 SafeIsland.TextSize = 16
 
@@ -189,13 +189,13 @@ local SafeIslandToggle = false
 SafeIsland.MouseButton1Click:connect(function()
 	if SafeIslandToggle == false then
 		SafeIslandToggle = true
-		SafeIsland.Text = 'Safe Island:✅'
+		SafeIsland.Text = 'Dont Disturb Island:✅'
 		game:GetService('ReplicatedStorage').rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", 0)
 		Player.Character.HumanoidRootPart.CFrame = CFrame.new(389.37, 33.65, 1505.1)
 	else
 		if SafeIslandToggle == true then
 			SafeIslandToggle = false
-			SafeIsland.Text = 'Safe Island:❎'
+			SafeIsland.Text = 'Dont Disturb Island:❎'
 			Player.Character.HumanoidRootPart.CFrame = CFrame.new(-42.72, 15.9, 404.2)
 		end
 	end
